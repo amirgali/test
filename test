@@ -1,0 +1,27 @@
+func test(count: Int) -> [[Int]] {
+    
+    var array = [[Int]]()
+    (0..<count).forEach { _ in
+        let count: Int = .random(in: 3...6)
+        var  inAr = [Int]()
+        (0..<count).forEach{ _ in
+            inAr.append(.random(in: 0...10))
+        }
+        array.append(inAr)
+    }
+    
+    var newArray = [Int]()
+    var finalArray = [[Int]]()
+    for (index, value) in array.enumerated() {
+        if index % 2 == 0 {
+            newArray = value.sorted(by: {$0 > $1})
+            finalArray += [newArray]
+        } else {
+            newArray = value.sorted()
+            finalArray += [newArray]
+        }
+    }
+    return finalArray
+}
+
+print(test(count: 8))
